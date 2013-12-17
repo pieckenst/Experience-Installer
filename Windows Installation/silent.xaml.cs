@@ -16,9 +16,7 @@ namespace Windows_Installation
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            MainWindow main = new MainWindow();
-            main.Show();
-
+            new MainWindow().Show();
             this.Close();
         }
     }

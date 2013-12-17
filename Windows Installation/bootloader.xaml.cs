@@ -15,19 +15,13 @@ namespace Windows_Installation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            apply applyWindow = new apply();
-            applyWindow.Show();
-
+            new apply().Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-            reboot rebootWindow = new reboot();
-            rebootWindow.Show();
-
+            new reboot().Show();
             this.Close();
         }
 

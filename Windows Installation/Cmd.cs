@@ -7,14 +7,12 @@ using System.Windows.Controls;
 
 class Cmd
 {
+    Process proc;
     Label lblOutput;
     ProgressBar progressBar;
 
     string command;
     string commandOptions;
-
-    Process proc;
-
     bool clearOutput = true;
 
     public Cmd(string command, string commandOptions)
@@ -52,7 +50,7 @@ class Cmd
         }
         catch (Exception ex)
         {
-            Console.Write(ex.ToString());
+            Console.Write(ex.Data);
         }
     }
 
@@ -64,7 +62,7 @@ class Cmd
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Der Vorgang konnte nicht ausgeführt werden. Fehlermeldung: " + ex.ToString());
+            MessageBox.Show("Konnte nicht ausgeführt werden: " + ex.Data, "Fehler");
         }
     }
 
@@ -72,31 +70,38 @@ class Cmd
     {
         try
         {
-            var procStartInfo = new System.Diagnostics.ProcessStartInfo(command, commandOptions);
+            ProcessStartInfo procStartInfo = new ProcessStartInfo(command, commandOptions);
+
             procStartInfo.RedirectStandardOutput = true;
             procStartInfo.UseShellExecute = false;
             procStartInfo.CreateNoWindow = true;
+
             proc = new Process();
 
             proc.OutputDataReceived += (s, e) =>
             {
                 lblOutput.Dispatcher.BeginInvoke((Action)(() =>
                 {
-                    if ((e.Data != null) && (lblOutput != null))
+                    if (e.Data == null) return;
+
+                    // Show output on a label?
+                    if (lblOutput != null)
                     {
                         if ((clearOutput) && (e.Data != "")) lblOutput.Content = e.Data;
                         else lblOutput.Content += e.Data + "\n";
+                    }
 
-                        if (this.progressBar != null)
+                    // Find percentage and show it on a progressBar
+                    if (this.progressBar != null)
+                    {
+                        Match match = Regex.Match(e.Data, @"\d+");
+
+                        if (match.Success)
                         {
-                            Match match = Regex.Match(e.Data, @"\d+", RegexOptions.IgnoreCase);
+                            double value = double.Parse(match.Groups[0].Value);
 
-                            if (match.Success)
-                            {
-                                double value = double.Parse(match.Groups[0].Value);
-                                if (value >= progressBar.Value) progressBar.Value = value;
-                                else progressBar.Value = 0.0;
-                            }
+                            if (value >= progressBar.Value) progressBar.Value = value;
+                            else progressBar.Value = 0.0; // Catches the time displayed after apply etc
                         }
                     }
                 }));
@@ -105,10 +110,11 @@ class Cmd
             proc.StartInfo = procStartInfo;
             proc.Start();
             proc.BeginOutputReadLine();
+
         }
         catch (Exception objException)
         {
-            MessageBox.Show("Error: " + objException.Message);
+            MessageBox.Show("Error: " + objException.Message, "Konnte nicht ausgeführt werden");
         }
     }
 }

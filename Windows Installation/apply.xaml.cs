@@ -15,25 +15,20 @@ namespace Windows_Installation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            format formatWindow = new format();
-            formatWindow.Show();
-
+            new format().Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-
-            bootloader blWindow = new bootloader();
-            blWindow.Show();
-
+            new bootloader().Show();
             this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             lblOut.Content = "";
+
             Cmd command = new Cmd("imagex", "/info " + txtWimPath.Text);
             command.attachLabel(lblOut);
             command.setClearOutput(false);

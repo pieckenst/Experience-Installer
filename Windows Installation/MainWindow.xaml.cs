@@ -15,20 +15,14 @@ namespace Windows_Installation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            silent silentWindow = new silent();
-            silentWindow.Show();
-
+            new silent().Show();
             this.Close();
         }
 
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-            format formatWindow = new format();
-            formatWindow.Show();
-
+            new format().Show();
             this.Close();
         }
     }
