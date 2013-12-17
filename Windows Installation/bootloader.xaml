@@ -6,7 +6,7 @@
         <Button Content="Zurück" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75" Click="Button_Click"/>
         <Button Content="Weiter" Margin="0,0,10,10" Click="Button_Click_1" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
         <Button Content="Bootloader installieren" HorizontalAlignment="Left" Margin="10,0,0,10" Width="127" Height="22" VerticalAlignment="Bottom" Click="Button_Click_2"/>
-        <Label x:Name="lblOutput" Content="BCDBOOT C:\Windows" Margin="10,10,10,37" Background="Black" Foreground="White" FontFamily="Consolas"/>
+        <Label x:Name="lblOutput" Content="BCDBOOT C:\Windows" Margin="10,10,10,37" Background="{x:Null}" Foreground="Black" FontFamily="Consolas" BorderThickness="1" BorderBrush="Black"/>
 
     </Grid>
 </Window>

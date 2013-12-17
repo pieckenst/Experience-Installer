@@ -79,8 +79,6 @@ class Cmd
 
             proc.OutputDataReceived += (s, e) =>
             {
-
-
                 if (e.Data == null) return;
 
                 // Show output on a label?
@@ -104,7 +102,6 @@ class Cmd
 
                         lblOutput.Dispatcher.BeginInvoke((Action)(() =>
                        {
-
                            if (value >= progressBar.Value) progressBar.Value = value;
                            else progressBar.Value = 0.0; // Catches the time displayed after apply etc
                        }));

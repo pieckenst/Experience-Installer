@@ -20,16 +20,12 @@
                 <Button Content="Apply Image" HorizontalAlignment="Left" Margin="295,10,0,0" VerticalAlignment="Top" Width="141" Height="26" Click="Button_Click_3"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Apply" Margin="10,147,10,37">
-            <Grid Margin="10,0,-2,1">
-                <ProgressBar x:Name="pgrBar"  Margin="10,0,25,10" Height="14" VerticalAlignment="Bottom"/>
-                <Label x:Name="lblOut" Content="ImageX" Margin="10,10,25,29" Background="Black" Foreground="White" FontFamily="Consolas"/>
-            </Grid>
-        </GroupBox>
         <Button Content="Wiminfo" Margin="0,36,10,0" VerticalAlignment="Top" Height="27" HorizontalAlignment="Right" Width="145" Click="Button_Click_2"/>
         <Label Content="Ausgewählter Index" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Width="147" IsEnabled="False"/>
         <ComboBox HorizontalAlignment="Left" Margin="146,36,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="txtWimPath" Height="23" Margin="0,12,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="145" Text="d:\\sources\\boot.wim"/>
+        <ProgressBar x:Name="pgrBar"  Margin="10,0,10,37" Height="27" VerticalAlignment="Bottom"/>
+        <Label x:Name="lblOut" Content="ImageX" Margin="10,153,10,74" Background="{x:Null}" Foreground="Black" FontFamily="Consolas" BorderBrush="Black" BorderThickness="1"/>
 
     </Grid>
 </Window>
