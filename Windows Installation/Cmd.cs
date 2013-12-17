@@ -11,8 +11,7 @@ class Cmd
     Label lblOutput;
     ProgressBar progressBar;
 
-    string command;
-    string commandOptions;
+    string command, commandOptions;
     bool clearOutput = true;
 
     public Cmd(string command, string commandOptions)
@@ -80,31 +79,38 @@ class Cmd
 
             proc.OutputDataReceived += (s, e) =>
             {
-                lblOutput.Dispatcher.BeginInvoke((Action)(() =>
+
+
+                if (e.Data == null) return;
+
+                // Show output on a label?
+                if (lblOutput != null)
                 {
-                    if (e.Data == null) return;
+                    lblOutput.Dispatcher.BeginInvoke((Action)(() =>
+                   {
+                       if ((clearOutput) && (e.Data != "")) lblOutput.Content = e.Data;
+                       else lblOutput.Content += e.Data + "\n";
+                   }));
+                }
 
-                    // Show output on a label?
-                    if (lblOutput != null)
+                // Find percentage and show it on a progressBar
+                if (this.progressBar != null)
+                {
+                    Match match = Regex.Match(e.Data, @"\d+");
+
+                    if (match.Success)
                     {
-                        if ((clearOutput) && (e.Data != "")) lblOutput.Content = e.Data;
-                        else lblOutput.Content += e.Data + "\n";
+                        double value = double.Parse(match.Groups[0].Value);
+
+                        lblOutput.Dispatcher.BeginInvoke((Action)(() =>
+                       {
+
+                           if (value >= progressBar.Value) progressBar.Value = value;
+                           else progressBar.Value = 0.0; // Catches the time displayed after apply etc
+                       }));
                     }
+                }
 
-                    // Find percentage and show it on a progressBar
-                    if (this.progressBar != null)
-                    {
-                        Match match = Regex.Match(e.Data, @"\d+");
-
-                        if (match.Success)
-                        {
-                            double value = double.Parse(match.Groups[0].Value);
-
-                            if (value >= progressBar.Value) progressBar.Value = value;
-                            else progressBar.Value = 0.0; // Catches the time displayed after apply etc
-                        }
-                    }
-                }));
             };
 
             proc.StartInfo = procStartInfo;
