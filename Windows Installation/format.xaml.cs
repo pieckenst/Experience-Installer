@@ -8,7 +8,6 @@ namespace Windows_Installation
     /// </summary>
     public partial class format : Window
     {
-        InstallStateMachine iSM = InstallStateMachine.getISM();
 
         public format()
         {
@@ -18,7 +17,6 @@ namespace Windows_Installation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            iSM.gotoState(InstallStateMachine.infoState);
 
             MainWindow main = new MainWindow();
             main.Show();
@@ -27,20 +25,11 @@ namespace Windows_Installation
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
-        {          
-            if (iSM.isCFormattedAndAct() || true) // DEBUG
-            {
-                iSM.gotoState(InstallStateMachine.applyState);
-
+        {
                 apply applyWindow = new apply();
                 applyWindow.Show();
 
                 this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Festplatte muss erst formatiert werden!");
-            }
         }
 
         private void sldPercent_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -68,18 +57,20 @@ namespace Windows_Installation
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             lblOutput.Content = "";
-            Cmd command = new Cmd("diskpart", "/s diskpart\\listdisk.txt", lblOutput, false);
+            Cmd command = new Cmd("diskpart", "/s diskpart\\listdisk.txt");
+            command.attachLabel(lblOutput);
+            command.setClearOutput(false);
             command.execute();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            if ((bool) onePartition.IsChecked)
+            if ((bool)onePartition.IsChecked)
             {
                 lblOutput.Content = "";
-                Cmd command = new Cmd("diskpart", "/s diskpart\\allC.txt", lblOutput, true);
+                Cmd command = new Cmd("diskpart", "/s diskpart\\allC.txt");
+                command.attachLabel(lblOutput);
                 command.execute();
-                iSM.setCFormattedAndAct(true);
             }
             else
             {
@@ -90,7 +81,9 @@ namespace Windows_Installation
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             lblOutput.Content = "";
-            Cmd command = new Cmd("diskpart", "/s diskpart\\listvol.txt", lblOutput, false);
+            Cmd command = new Cmd("diskpart", "/s diskpart\\listvol.txt");
+            command.attachLabel(lblOutput);
+            command.setClearOutput(false);
             command.execute();
         }
     }

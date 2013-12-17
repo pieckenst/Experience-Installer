@@ -89,7 +89,6 @@
     <Compile Include="silent.xaml.cs">
       <DependentUpon>silent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="State.cs" />
     <Page Include="apply.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,7 +109,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InstallStateMachine.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -150,6 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="diskpart\allC.txt" />
+    <Resource Include="diskpart\listdisk.txt" />
+    <Resource Include="diskpart\listvol.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

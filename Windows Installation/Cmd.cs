@@ -8,7 +8,7 @@ using System.Windows.Controls;
 class Cmd
 {
     Label lblOutput;
-    ProgressBar pgrBar;
+    ProgressBar progressBar;
 
     string command;
     string commandOptions;
@@ -17,24 +17,25 @@ class Cmd
 
     bool clearOutput = true;
 
-    public Cmd(string command, string commandOptions, Label outputLabel)
+    public Cmd(string command, string commandOptions)
     {
         this.command = command;
         this.commandOptions = commandOptions;
-        this.lblOutput = outputLabel;
     }
 
-    public Cmd(string command, string commandOptions, Label outputLabel, bool clearOutput)
+    public void attachLabel(Label label)
     {
-        this.command = command;
-        this.commandOptions = commandOptions;
-        this.lblOutput = outputLabel;
-        this.clearOutput = clearOutput;
+        this.lblOutput = label;
     }
 
-    public void attachProgressBar(ProgressBar pgrBar)
+    public void attachProgressBar(ProgressBar progressBar)
     {
-        this.pgrBar = pgrBar;
+        this.progressBar = progressBar;
+    }
+
+    public void setClearOutput(bool clear)
+    {
+        this.clearOutput = clear;
     }
 
     public void execute()
@@ -86,15 +87,15 @@ class Cmd
                         if ((clearOutput) && (e.Data != "")) lblOutput.Content = e.Data;
                         else lblOutput.Content += e.Data + "\n";
 
-                        if (this.pgrBar != null)
+                        if (this.progressBar != null)
                         {
                             Match match = Regex.Match(e.Data, @"\d+", RegexOptions.IgnoreCase);
 
                             if (match.Success)
                             {
                                 double value = double.Parse(match.Groups[0].Value);
-                                if (value >= pgrBar.Value) pgrBar.Value = value;
-                                else pgrBar.Value = 0.0;
+                                if (value >= progressBar.Value) progressBar.Value = value;
+                                else progressBar.Value = 0.0;
                             }
                         }
                     }

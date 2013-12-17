@@ -8,8 +8,6 @@ namespace Windows_Installation
     public partial class apply : Window
     {
 
-        InstallStateMachine iSM = InstallStateMachine.getISM();
-
         public apply()
         {
             InitializeComponent();
@@ -17,8 +15,6 @@ namespace Windows_Installation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            iSM.gotoState(InstallStateMachine.formatState);
-
             format formatWindow = new format();
             formatWindow.Show();
 
@@ -27,31 +23,27 @@ namespace Windows_Installation
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (iSM.isApplyDone() || true)
-            {
-                iSM.gotoState(InstallStateMachine.bootloaderState);
 
-                bootloader blWindow = new bootloader();
-                blWindow.Show();
 
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Apply nicht fertig! Bitte Apply durchführen.");
-            }
+            bootloader blWindow = new bootloader();
+            blWindow.Show();
+
+            this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             lblOut.Content = "";
-            Cmd command = new Cmd("imagex", "/info " + txtWimPath.Text, lblOut, false);
+            Cmd command = new Cmd("imagex", "/info " + txtWimPath.Text);
+            command.attachLabel(lblOut);
+            command.setClearOutput(false);
             command.execute();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Cmd command = new Cmd("imagex", "/apply " + txtWimPath.Text + " 1 c:", lblOut, true);
+            Cmd command = new Cmd("imagex", "/apply " + txtWimPath.Text + " 1 c:");
+            command.attachLabel(lblOut);
             command.attachProgressBar(pgrBar);
             command.execute();
         }
