@@ -30,9 +30,9 @@ class Cmd
         this.progressBar = progressBar;
     }
 
-    public void setClearOutput(bool clear)
+    public void disableClearOutput()
     {
-        this.clearOutput = clear;
+        this.clearOutput = false;
     }
 
     public void execute()
@@ -51,6 +51,11 @@ class Cmd
         {
             Console.Write(ex.Data);
         }
+    }
+
+    public bool isFinished()
+    {
+        return proc.HasExited;
     }
 
     private void WorkThreadFunction()
@@ -100,7 +105,7 @@ class Cmd
                     {
                         double value = double.Parse(match.Groups[0].Value);
 
-                        lblOutput.Dispatcher.BeginInvoke((Action)(() =>
+                        progressBar.Dispatcher.BeginInvoke((Action)(() =>
                        {
                            if (value >= progressBar.Value) progressBar.Value = value;
                            else progressBar.Value = 0.0; // Catches the time displayed after apply etc
