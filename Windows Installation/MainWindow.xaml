@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Windows_Installation.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Info" Height="573" Width="742" WindowStartupLocation="CenterScreen">
+        Title="Windows Installation" Height="573" Width="742" WindowStartupLocation="CenterScreen">
     <Grid>
         <GroupBox Header="Formatieren" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="222" Width="350">
             <Grid Margin="10">
