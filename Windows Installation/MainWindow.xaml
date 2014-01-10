@@ -17,8 +17,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="btnDiskInfo" Content="Festplatten" HorizontalAlignment="Left" Margin="17,0,0,10" Width="75" Click="btnDiskInfo_Click" Height="22" VerticalAlignment="Bottom"/>
-                <Button x:Name="btnVolumeInfo" Content="Partitionen" HorizontalAlignment="Left" Margin="97,0,0,10" Width="75" Click="btnVolumeInfo_Click" Height="22" VerticalAlignment="Bottom"/>
+                <Button x:Name="btnDiskInfo" Content="Info" HorizontalAlignment="Left" Margin="17,0,0,10" Width="75" Click="btnDiskInfo_Click" Height="22" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Installieren" Margin="365,10,10,0" VerticalAlignment="Top" Height="222">
@@ -49,7 +48,6 @@
             </Grid>
         </GroupBox>
         <ProgressBar x:Name="pgrApplyProgress" Margin="10,0,170,10" Height="22" VerticalAlignment="Bottom" Foreground="#7FCD612F"/>
-        <Label x:Name="lblCmd" Content="-- Ausgabe --" Margin="10,237,10,37" FontFamily="Consolas" Foreground="White" BorderBrush="Black" Background="#CC010306" BorderThickness="1"/>
         <Button x:Name="btnReboot" Content="Reboot" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="btnReboot_Click" Height="22">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
@@ -61,5 +59,14 @@
             </Button.Background>
         </Button>
         <Button x:Name="btnExitToCmd" Content="Exit to Cmd" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75" Click="btnExitToCmd_Click" Height="22"/>
+        <TextBox x:Name="output" Margin="10,237,10,37" TextWrapping="Wrap" Text="-- Ausgabe --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
+            <TextBox.BorderBrush>
+                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
+                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+                    <GradientStop Color="#FFA5BED6" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.BorderBrush>
+        </TextBox>
     </Grid>
 </Window>

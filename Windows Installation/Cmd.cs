@@ -8,7 +8,7 @@ using System.Windows.Controls;
 class Cmd
 {
     Process proc;
-    Label lblOutput;
+    TextBox lblOutput;
     ProgressBar progressBar;
 
     string command, commandOptions;
@@ -20,7 +20,7 @@ class Cmd
         this.commandOptions = commandOptions;
     }
 
-    public void attachLabel(Label label)
+    public void attachLabel(TextBox label)
     {
         this.lblOutput = label;
     }
@@ -91,8 +91,8 @@ class Cmd
                 {
                     lblOutput.Dispatcher.BeginInvoke((Action)(() =>
                    {
-                       if ((clearOutput) && (e.Data != "")) lblOutput.Content = e.Data;
-                       else lblOutput.Content += e.Data + "\n";
+                       if ((clearOutput) && (e.Data != "")) lblOutput.Text = e.Data;
+                       else lblOutput.Text += e.Data + "\n";
                    }));
                 }
 

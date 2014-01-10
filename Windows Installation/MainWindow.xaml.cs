@@ -17,22 +17,10 @@ namespace Windows_Installation
 
         private void btnDiskInfo_Click(object sender, RoutedEventArgs e)
         {
-            lblCmd.Content = "";
+            output.Text = "";
 
-            Cmd diskInfo = new Cmd("diskpart", "-s diskpart\\listdisk.txt");
-            diskInfo.attachLabel(lblCmd);
-            diskInfo.disableClearOutput();
-            diskInfo.execute();
-        }
-
-        private void btnVolumeInfo_Click(object sender, RoutedEventArgs e)
-        {
-            lblCmd.Content = "";
-
-            Cmd volumeInfo = new Cmd("diskpart", "-s diskpart\\listvol.txt");
-            volumeInfo.attachLabel(lblCmd);
-            volumeInfo.disableClearOutput();
-            volumeInfo.execute();
+            Diskpart diskPart = new Diskpart(output);
+            diskPart.diskInfo();
         }
 
         private void btnExitToCmd_Click(object sender, RoutedEventArgs e)
@@ -48,46 +36,43 @@ namespace Windows_Installation
 
         private void btnBootloader_Click(object sender, RoutedEventArgs e)
         {
-            lblCmd.Content = "Bootloader wird eingerichtet...";
+            output.Text = "Bootloader wird eingerichtet...";
 
             Cmd bootloader = new Cmd("bcdboot", " c:\\windows");
-            bootloader.attachLabel(lblCmd);
+            bootloader.attachLabel(output);
             bootloader.execute();
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
             Cmd apply = new Cmd("imagex", " /apply " + txtWimPath.Text + " 1 c:");
-            apply.attachLabel(lblCmd);
+            apply.attachLabel(output);
             apply.attachProgressBar(pgrApplyProgress);
             apply.execute();
         }
 
         private void btnWimInfo_Click(object sender, RoutedEventArgs e)
         {
-            lblCmd.Content = "";
+            output.Text = "";
 
             Cmd wimInfo = new Cmd("imagex", "/info " + txtWimPath.Text);
-            wimInfo.attachLabel(lblCmd);
+            wimInfo.attachLabel(output);
             wimInfo.disableClearOutput();
             wimInfo.execute();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Cmd format;
+            Diskpart diskPart = new Diskpart(output);
 
             if ((bool) cOnePartition.IsChecked)
             {
-                format = new Cmd("diskpart", "/s diskpart\\allC.txt");
+                diskPart.formatOnePartition();
             }
             else
             {
-                format = new Cmd("diskpart", "/s diskpart\\twoPartitions.txt");
+                diskPart.formatTwoPartitions();
             }
-
-            format.attachLabel(lblCmd);
-            format.execute();
         }
     }
 }
