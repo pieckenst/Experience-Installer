@@ -30,13 +30,13 @@ namespace Windows_Installation
             }));
         }
 
-        public void formatTwoPartitions()
+        public void formatTwoPartitions(int Gb)
         {
             clearOutput = true;
             diskPart(new List<String>(new String[] {
                 "sel disk 0",
                 "clean",
-                "create part prim size=102400",
+                "create part prim size=" + Gb * 1024,
                 "sel part 1",
                 "format fs=ntfs quick",
                 "act",

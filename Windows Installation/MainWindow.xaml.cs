@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Windows_Installation
 {
@@ -71,8 +72,27 @@ namespace Windows_Installation
             }
             else
             {
-                diskPart.formatTwoPartitions();
+                int gb;
+                try
+                {
+                    gb = Convert.ToInt16(txtGb.Text);
+                    diskPart.formatTwoPartitions(gb);
+                }
+                catch (Exception ex)
+                {
+                    output.Text = ex.ToString();
+                }
             }
+        }
+
+        private void cTwoPartitions_Checked(object sender, RoutedEventArgs e)
+        {
+            txtGb.IsEnabled = true;
+        }
+
+        private void cOnePartition_Checked(object sender, RoutedEventArgs e)
+        {
+            txtGb.IsEnabled = false;
         }
     }
 }
