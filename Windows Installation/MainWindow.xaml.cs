@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Diagnostics;
 
 namespace Windows_Installation
 {
@@ -12,7 +13,14 @@ namespace Windows_Installation
         public MainWindow()
         {
             InitializeComponent();
-
+            try
+            {
+                txtWimPath.Text = System.Configuration.ConfigurationManager.AppSettings["path"].ToString();
+            }
+            catch (Exception ex)
+            {
+                txtWimPath.Text = "p:\\ath\\to\\wim";
+            }
             cOnePartition.IsChecked = true;
         }
 
@@ -39,14 +47,14 @@ namespace Windows_Installation
         {
             output.Text = "Bootloader wird eingerichtet...";
 
-            Cmd bootloader = new Cmd("bcdboot", " c:\\windows");
+            Cmd bootloader = new Cmd("bcdboot", " k:\\windows");
             bootloader.attachLabel(output);
             bootloader.execute();
         }
 
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-            Cmd apply = new Cmd("imagex", " /apply " + txtWimPath.Text + " 1 c:");
+            Cmd apply = new Cmd("imagex", " /apply " + txtWimPath.Text + " 1 k:");
             apply.attachLabel(output);
             apply.attachProgressBar(pgrApplyProgress);
             apply.execute();

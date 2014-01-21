@@ -26,7 +26,7 @@ namespace Windows_Installation
                 "create part prim",
                 "format fs=ntfs quick",
                 "act",
-                "ass"
+                "ass letter=k"
             }));
         }
 
@@ -40,11 +40,11 @@ namespace Windows_Installation
                 "sel part 1",
                 "format fs=ntfs quick",
                 "act",
-                "ass letter=c",
+                "ass letter=k",
                 "create part prim",
                 "format fs=ntfs quick",
                 "act",
-                "ass letter=d"
+                "ass"
             }));
         }
 
