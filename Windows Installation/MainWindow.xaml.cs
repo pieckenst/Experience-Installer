@@ -28,8 +28,7 @@ namespace Windows_Installation
         {
             output.Text = "";
 
-            Diskpart diskPart = new Diskpart(output);
-            diskPart.diskInfo();
+            new Diskpart(output).diskInfo();
         }
 
         private void btnExitToCmd_Click(object sender, RoutedEventArgs e)
@@ -80,10 +79,9 @@ namespace Windows_Installation
             }
             else
             {
-                int gb;
                 try
                 {
-                    gb = Convert.ToInt16(txtGb.Text);
+                    int gb = Convert.ToInt16(txtGb.Text);
                     diskPart.formatTwoPartitions(gb);
                 }
                 catch (Exception ex)
