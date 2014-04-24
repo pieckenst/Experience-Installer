@@ -1,6 +1,0 @@
-Sel disk 0
-Clean
-Create part prim
-Format fs=ntfs quick
-Act
-Ass letter=c
