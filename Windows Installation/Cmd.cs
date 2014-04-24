@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 class Cmd
 {
-    Process proc;
+    Process proc = new Process();
     TextBox lblOutput;
     ProgressBar progressBar;
 
@@ -18,6 +18,29 @@ class Cmd
     {
         this.command = command;
         this.commandOptions = commandOptions;
+    }
+
+    public void showMessageWhenFinished(String messageToShow)
+    {
+        this.proc.Exited += (s, e) =>
+        {
+            if (lblOutput != null)
+            {
+                lblOutput.Dispatcher.BeginInvoke((Action)(() => 
+                {
+                    lblOutput.Text += messageToShow + "\n";
+                }));
+            }
+        };
+    }
+
+    public void executeAfterExit(Cmd nextProcess)
+    {
+        this.proc.Exited += (s, e) =>
+        {
+            System.Threading.Thread.Sleep(500);
+            nextProcess.execute();
+        };
     }
 
     public void attachLabel(TextBox label)
@@ -80,8 +103,6 @@ class Cmd
             procStartInfo.UseShellExecute = false;
             procStartInfo.CreateNoWindow = true;
 
-            proc = new Process();
-
             proc.OutputDataReceived += (s, e) =>
             {
                 if (e.Data == null) return;
@@ -116,6 +137,7 @@ class Cmd
             };
 
             proc.StartInfo = procStartInfo;
+            proc.EnableRaisingEvents = true;
             proc.Start();
             proc.BeginOutputReadLine();
 

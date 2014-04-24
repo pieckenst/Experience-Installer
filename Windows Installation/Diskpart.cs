@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Windows.Controls;
 
 namespace Windows_Installation
 {
     class Diskpart
     {
+        Process cmdProcess;
         TextBox output;
         bool clearOutput;
 
         public Diskpart(TextBox newOutput)
         {
             output = newOutput;
+        }
+
+        public void executeAfterExit(Cmd nextProcess)
+        {
+            this.cmdProcess.Exited += (s, e) =>
+            {
+                nextProcess.execute();
+            };
         }
 
         public void formatOnePartition()
@@ -67,7 +74,7 @@ namespace Windows_Installation
             cmdStartInfo.UseShellExecute = false;
             cmdStartInfo.CreateNoWindow = true;
 
-            Process cmdProcess = new Process();
+            cmdProcess = new Process();
             cmdProcess.StartInfo = cmdStartInfo;
             cmdProcess.OutputDataReceived += cmd_DataReceived;
             cmdProcess.EnableRaisingEvents = true;
