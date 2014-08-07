@@ -47,11 +47,7 @@ namespace Windows_Installation
                 "sel part 1",
                 "format fs=ntfs quick",
                 "act",
-                "ass letter=k",
-                "create part prim",
-                "format fs=ntfs quick",
-                "act",
-                "ass"
+                "ass letter=k"
             }));
         }
 
