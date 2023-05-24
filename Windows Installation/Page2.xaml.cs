@@ -97,14 +97,14 @@ namespace Windows_Installation
 
             if ((bool)cOnePartition.IsChecked)
             {
-                diskPart.formatOnePartition();
+                diskPart.formatOnePartition(int.Parse(txtdisknum.Text));
             }
             else
             {
                 try
                 {
                     int gb = Convert.ToInt16(txtGb.Text);
-                    diskPart.formatTwoPartitions(gb);
+                    diskPart.formatTwoPartitions(gb, int.Parse(txtdisknum.Text));
                 }
                 catch (Exception ex)
                 {

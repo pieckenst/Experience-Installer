@@ -5,32 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Windows_Installation"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="530" d:DesignWidth="800"
       Title="Page2" Background="White">
 
     <Grid>
-        <GroupBox Header="Formatieren" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="222" Width="350">
+        <GroupBox Header="Disk Formatting" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Height="222" Width="350">
             <Grid Margin="10">
-                <RadioButton x:Name="cOnePartition" Content="Using the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="cOnePartition_Checked"/>
-                <RadioButton x:Name="cTwoPartitions" Content="Creating two partitions" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Checked="cTwoPartitions_Checked"/>
-                <Button Content="Formatting" Margin="0,0,10,0" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="Button_Click">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                            <GradientStop Color="#7FCD612F" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <RadioButton x:Name="cOnePartition" Content="Use the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Checked="cOnePartition_Checked"/>
+                <RadioButton x:Name="cTwoPartitions" Content="Create two partitions" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Checked="cTwoPartitions_Checked"/>
+                <Button Content="Formatting" Margin="0,0,10,0" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="Button_Click"/>
                 <Button x:Name="btnDiskInfo" Content="Hard Disk Info" HorizontalAlignment="Left" Margin="10,0,0,0" Width="93" Click="btnDiskInfo_Click" Height="22" VerticalAlignment="Bottom"/>
-                <Label Content="Size of the first partition:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtGb" HorizontalAlignment="Left" Height="24" Margin="10,83,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="70" TextAlignment="Right" IsEnabled="False"/>
-                <Label Content="GB" HorizontalAlignment="Left" Margin="85,83,0,0" VerticalAlignment="Top"/>
+                <Label Content="Size of the first partition:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtGb" HorizontalAlignment="Left" Height="24" Margin="22,26,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="70" TextAlignment="Right" />
+                <Label Content="GB" HorizontalAlignment="Left" Margin="97,26,0,0" VerticalAlignment="Top"/>
                 <Label Content="1." Margin="0,0,90,0" VerticalAlignment="Bottom" Height="22" FontWeight="Bold" FontSize="11" HorizontalAlignment="Right" Width="19"/>
+                <Label Content="Disk Number" HorizontalAlignment="Left" Margin="22,50,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtdisknum" HorizontalAlignment="Left" Height="24" Margin="19,0,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="70" TextAlignment="Right" />
             </Grid>
         </GroupBox>
-        <GroupBox Header="Install" Margin="365,10,10,0" VerticalAlignment="Top" Height="222">
+        <GroupBox Header="Install" Margin="380,110,16,0" VerticalAlignment="Top" Height="222">
             <Grid Margin="10">
                 <TextBox x:Name="txtWimPath" Height="22" Margin="10,26,10,0" TextWrapping="Wrap" Text="e:\sources\boot.wim" VerticalAlignment="Top" Foreground="White" TextChanged="txtWimPath_TextChanged">
                     <TextBox.BorderBrush>
@@ -44,16 +37,7 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
                     </TextBox.Background>
                 </TextBox>
-                <Button x:Name="btnApply" Content="Apply" Margin="0,0,10,5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnApply_Click">
-                    <Button.Background>
-                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                            <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                            <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                            <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                            <GradientStop Color="#7FCD612F" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                </Button>
+                <Button x:Name="btnApply" Content="Apply" Margin="0,0,10,5" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnApply_Click"/>
                 <Label Content="The path to WIM" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                 <Label Content="2." HorizontalAlignment="Right" Margin="0,0,90,5" VerticalAlignment="Bottom" Height="22" FontWeight="Bold" FontSize="11"/>
                 <Button x:Name="btnWimInfo" Content="Wim-Info" HorizontalAlignment="Left" Margin="10,0,0,4" Width="93" Height="22" VerticalAlignment="Bottom" Click="btnWimInfo_Click"/>
@@ -64,19 +48,9 @@
                 </ListBox>
             </Grid>
         </GroupBox>
-        <ProgressBar x:Name="pgrApplyProgress" Margin="10,0,271,10" Height="22" VerticalAlignment="Bottom" Foreground="#7FCD612F"/>
-        <Button x:Name="btnReboot" Content="Restart" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="btnReboot_Click" Height="22">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
-                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
-                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
-                    <GradientStop Color="#7FCD612F" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        
-        <TextBox x:Name="output" Margin="10,237,10,37" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
+        <ProgressBar x:Name="pgrApplyProgress" Margin="19,350,21,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
+
+        <TextBox x:Name="output" Margin="19,377,22,65" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                     <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -85,6 +59,40 @@
                 </LinearGradientBrush>
             </TextBox.BorderBrush>
         </TextBox>
-        <Button Content="Copy drivers" Margin="0,0,170,10" Click="Button_Click_1" HorizontalAlignment="Right" Width="96" Height="22" VerticalAlignment="Bottom"/>
+        <StackPanel Background="Gainsboro" Margin="-12,481,0,0">
+            <Button x:Name="btnReboot" Content="Restart" Width="75" Click="btnReboot_Click" Height="22" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="350" Y="12"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Content="Copy drivers" Click="Button_Click_1" Width="96" Height="22" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="250" Y="-10"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+        </StackPanel>
+        <StackPanel Background="Gainsboro" Margin="-12,0,0,460">
+            <TextBlock TextWrapping="Wrap" Text="Windows Installer" Width="166" RenderTransformOrigin="0,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="-290" Y="10"/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </StackPanel>
+        <Image Margin="710,0,12,460" Source="/icons8-windows-xp-208.png"/>
     </Grid>
 </Page>

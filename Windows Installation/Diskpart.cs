@@ -24,11 +24,11 @@ namespace Windows_Installation
             };
         }
 
-        public void formatOnePartition()
+        public void formatOnePartition(int disknumber)
         {
             clearOutput = true;
             diskPart(new List<String>(new String[] {
-                "sel disk 0",
+                "sel disk" + disknumber,
                 "clean",
                 "create part prim",
                 "format fs=ntfs quick",
@@ -37,11 +37,11 @@ namespace Windows_Installation
             }));
         }
 
-        public void formatTwoPartitions(int Gb)
+        public void formatTwoPartitions(int Gb, int disknumber)
         {
             clearOutput = true;
             diskPart(new List<String>(new String[] {
-                "sel disk 0",
+                "sel disk" + disknumber,
                 "clean",
                 "create part prim size=" + Gb * 1024,
                 "sel part 1",
