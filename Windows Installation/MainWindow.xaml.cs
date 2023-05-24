@@ -45,17 +45,17 @@ namespace Windows_Installation
             Cmd apply = new Cmd("imagex", " /apply " + lstWims.SelectedItem + " 1 k:");
             apply.attachLabel(output);
             apply.attachProgressBar(pgrApplyProgress);
-            apply.showMessageWhenFinished("Apply ist fertig. _install wird kopiert...");
+            apply.showMessageWhenFinished("Apply is done. _install is copied...");
 
             Cmd xcopy = new Cmd("xcopy", "\\\\changeme\\osdeploy\\inserts\\* K:\\ /s /Y");
             xcopy.attachLabel(output);
             xcopy.disableClearOutput();
-            xcopy.showMessageWhenFinished("Kopieren ist fertig. Bootloader wird eingerichtet...");
+            xcopy.showMessageWhenFinished("Copying is done. Bootloader is set up...");
 
             Cmd bootloader = new Cmd("bcdboot", " k:\\windows");
             bootloader.disableClearOutput();
             bootloader.attachLabel(output);
-            bootloader.showMessageWhenFinished("Bootloader wurde eingerichtet. Die Installation ist damit abgeschlossen.");
+            bootloader.showMessageWhenFinished("Bootloader has been set up. The installation is now complete.");
 
             
             apply.executeAfterExit(xcopy);
@@ -67,7 +67,7 @@ namespace Windows_Installation
             }
             else
             {
-                output.Text = "Bitte zuerst ein Wim auswählen";
+                output.Text = "Please select a Wim first";
             }
             
         }
@@ -103,7 +103,7 @@ namespace Windows_Installation
                 }
             }
 
-            Cmd echo = new Cmd("cmd.exe", "/c echo Formatieren abgeschlossen.");
+            Cmd echo = new Cmd("cmd.exe", "/c echo Formatting is complete.");
             echo.attachLabel(output);
             diskPart.executeAfterExit(echo);
         }
