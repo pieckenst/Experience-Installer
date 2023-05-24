@@ -165,6 +165,12 @@
   <ItemGroup>
     <Resource Include="icons8-windows-xp-208.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="f2a19f9b98f64032253abfeb45f91fe6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="winlogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

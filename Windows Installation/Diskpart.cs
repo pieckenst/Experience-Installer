@@ -95,7 +95,7 @@ namespace Windows_Installation
                 process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.FileName = "x:\\windows\\system32\\bcdboot.exe";
-                process.StartInfo.Arguments = " w:\\windows /s S: /f ALL";
+                process.StartInfo.Arguments = "k:\\windows /s S: /f ALL";
                 process.Start();
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();

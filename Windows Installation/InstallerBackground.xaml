@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Windows_Installation"
         mc:Ignorable="d"
-        Title="InstallerBackground" Height="450" Width="800" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Title="InstallerBackground" Height="800" Width="1000" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Image Margin="0,-58,0,-92" Source="/Setup_background_(Longhorn_Build_4051_Setup).png" Stretch="Fill"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="31*"/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="0,-58,0,-92" Source="/Setup_background_(Longhorn_Build_4051_Setup).png" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
 
     </Grid>
 </Window>
