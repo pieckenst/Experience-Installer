@@ -1,7 +1,7 @@
-WinInstaller
+Experience Installer
 ============
 
-# Custom Windows Installer in .Net for WinPE
+# Custom Windows Installer in .Net for WinPE which tries to replicate the look and feel of graphical portion of windows xp installation process
 
 ## Purpose of this tool
 
