@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -41,34 +43,44 @@ namespace Windows_Installation
         }
         private void btnApply_Click(object sender, RoutedEventArgs e)
         {
-            Cmd apply = new Cmd("imagex", " /apply " + lstWims.SelectedItem + " 1 k:");
-            apply.attachLabel(output);
-            apply.attachProgressBar(pgrApplyProgress);
-            apply.showMessageWhenFinished("Apply is done. _install is copied...");
-
-            Cmd xcopy = new Cmd("xcopy", "\\\\changeme\\osdeploy\\inserts\\* K:\\ /s /Y");
-            xcopy.attachLabel(output);
-            xcopy.disableClearOutput();
-            xcopy.showMessageWhenFinished("Copying is done. Bootloader is set up...");
-
-            Cmd bootloader = new Cmd("bcdboot", " k:\\windows");
-            bootloader.disableClearOutput();
-            bootloader.attachLabel(output);
-            bootloader.showMessageWhenFinished("Bootloader has been set up. The installation is now complete.");
-
-
-            apply.executeAfterExit(xcopy);
-            xcopy.executeAfterExit(bootloader);
-
-            if (lstWims.SelectedIndex > -1)
+            Diskpart diskPart = new Diskpart(output);
+            int indexsel = int.Parse(txtdisknum.Text);
+            if (Install(indexsel))
             {
-                apply.execute();
+                Console.WriteLine(" (3/4) Adding BCD Boot Records");
+                if (diskPart.BCDRecords())
+                {
+                    Console.WriteLine("Windows has been deployed!");
+                }
             }
-            else
+        }
+
+        public bool Install(int index)
+        {
+
+            Process process = new Process();
+            process.StartInfo.FileName = "dism.exe";
+            process.StartInfo.Arguments = $"/apply-image /imagefile:install.wim /index:{index} /ApplyDir:K:\\";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardInput = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+
+
+
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            if (process.ExitCode != 0)
             {
-                output.Text = "Please select a Wim first";
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($" An Error occured while applying the image. \n\n DISM error {process.ExitCode}");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                return false;
             }
 
+            return true;
         }
         private void txtWimPath_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -96,3 +108,4 @@ namespace Windows_Installation
         }
     }
 }
+

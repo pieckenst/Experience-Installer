@@ -27,7 +27,7 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
                     </TextBox.Background>
                 </TextBox>
-                <Button x:Name="btnApply" Content="Apply" Margin="0,0,9,36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnApply_Click" Grid.Column="1"/>
+                <Button x:Name="btnApply" Content="Deploy" Margin="0,0,9,36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnApply_Click" Grid.Column="1"/>
                 <Label Content="The path to WIM" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="btnWimInfo" Content="Image Info" HorizontalAlignment="Left" Margin="10,0,0,36" Width="93" Height="22" VerticalAlignment="Bottom" Click="btnWimInfo_Click"/>
                 <ListBox x:Name="lstWims" Height="72" Margin="10,48,10,0" VerticalAlignment="Top" BorderThickness="1,0,1,1" BorderBrush="#FFA5BED6" Foreground="White" Grid.ColumnSpan="2">
@@ -35,10 +35,12 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
                     </ListBox.Background>
                 </ListBox>
+                <Label Content="Index:" HorizontalAlignment="Left" Margin="111,126,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtdisknum" HorizontalAlignment="Left" Height="24" Margin="163,128,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="70" TextAlignment="Right" RenderTransformOrigin="0,0.835" />
             </Grid>
         </GroupBox>
         <ProgressBar x:Name="pgrApplyProgress" Margin="44,207,44,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
-        <TextBox x:Name="output" Margin="-453,318,831,44" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
+        <TextBox x:Name="output" Margin="44,91,44,381" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                     <GradientStop Color="#FFABADB3" Offset="0.05"/>

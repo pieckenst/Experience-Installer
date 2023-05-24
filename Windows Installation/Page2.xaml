@@ -9,7 +9,7 @@
       Title="Page2" Background="White">
 
     <Grid>
-        <GroupBox Header="" HorizontalAlignment="Left" Margin="19,110,0,0" VerticalAlignment="Top" Height="222" Width="748">
+        <GroupBox Header="" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" Height="222" Width="748">
             <Grid Margin="10">
                 <RadioButton x:Name="cOnePartition" Content="Use the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Checked="cOnePartition_Checked"/>
                 <RadioButton x:Name="cTwoPartitions" Content="Create two partitions" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Checked="cTwoPartitions_Checked"/>
@@ -23,9 +23,9 @@
                 <TextBox x:Name="txtdisknum" HorizontalAlignment="Left" Height="24" Margin="19,0,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="70" TextAlignment="Right" />
             </Grid>
         </GroupBox>
-        <ProgressBar x:Name="pgrApplyProgress" Margin="19,350,21,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
+        <ProgressBar x:Name="pgrApplyProgress" Margin="26,195,26,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
 
-        <TextBox x:Name="output" Margin="19,377,22,65" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
+        <TextBox x:Name="output" Margin="-867,284,908,158" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
             <TextBox.BorderBrush>
                 <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                     <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -69,5 +69,6 @@
             </TextBlock>
         </StackPanel>
         <Image Margin="710,0,12,460" Source="/icons8-windows-xp-208.png"/>
+        <Label x:Name="proglabel" Content="Operation Progress" HorizontalAlignment="Left" Margin="26,159,0,0" VerticalAlignment="Top" FontSize="16" Width="161"/>
     </Grid>
 </Page>
