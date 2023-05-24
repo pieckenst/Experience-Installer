@@ -13,9 +13,9 @@ namespace Windows_Installation
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnActivated(EventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnActivated(e);
+            base.OnStartup(e);
 
             MainWindow NewWindowB = new MainWindow();
             NewWindowB.Show();
