@@ -13,5 +13,12 @@ namespace Windows_Installation
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            MainWindow NewWindowB = new MainWindow();
+            NewWindowB.Show();
+        }
     }
 }
