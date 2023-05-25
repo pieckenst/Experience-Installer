@@ -36,7 +36,7 @@ namespace Windows_Installation
         {
             output.Text = "";
 
-            Cmd wimInfo = new Cmd("imagex", "/info " + txtWimPath.Text);
+            Cmd wimInfo = new Cmd("Dism", "/Get-ImageInfo /imagefile:" + txtWimPath.Text);
             wimInfo.attachLabel(output);
             wimInfo.disableClearOutput();
             wimInfo.execute();
@@ -57,10 +57,10 @@ namespace Windows_Installation
 
         public bool Install(int index)
         {
-            string textpathl= txtWimPath.Text;
+            string textpathl = txtWimPath.Text;
             Process process = new Process();
             process.StartInfo.FileName = "dism.exe";
-            process.StartInfo.Arguments = $"/apply-image /imagefile:{textpathl} / index:{index} /ApplyDir:K:\\";
+            process.StartInfo.Arguments = "/apply-image /imagefile:"+  textpathl +" /index:"  +index +" /ApplyDir:K:\\";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.RedirectStandardInput = true;
