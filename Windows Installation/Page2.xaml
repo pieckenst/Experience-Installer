@@ -11,8 +11,8 @@
     <Grid>
         <GroupBox Header="" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" Height="222" Width="748">
             <Grid Margin="10">
-                <RadioButton x:Name="cOnePartition" Content="Use the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Checked="cOnePartition_Checked" IsChecked="True"/>
-                <RadioButton x:Name="cTwoPartitions" Content="Create two partitions" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Checked="cTwoPartitions_Checked"/>
+                <RadioButton x:Name="cOnePartition" Content="Use the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"  IsChecked="True"/>
+                <RadioButton x:Name="cTwoPartitions" Content="Create two partitions" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" />
                 <Button Content="Formatting" Margin="0,0,10,0" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="Button_Click"/>
                 <Button x:Name="btnDiskInfo" Content="Hard Disk Info" HorizontalAlignment="Left" Margin="10,0,0,0" Width="93" Click="btnDiskInfo_Click" Height="22" VerticalAlignment="Bottom"/>
                 <Label Content="Size of the first partition:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
