@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows Installation", "Windows Installation\Windows Installation.csproj", "{37378584-0919-4A2A-AAD8-ED9A8D044F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Windows Installation", "Windows Installation\Windows Installation.csproj", "{37378584-0919-4A2A-AAD8-ED9A8D044F9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
