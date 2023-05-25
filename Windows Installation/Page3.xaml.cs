@@ -71,6 +71,7 @@ namespace Windows_Installation
 
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
+            Console.WriteLine(output);
             if (process.ExitCode != 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
