@@ -77,7 +77,7 @@ namespace Windows_Installation
 
                 string output1 = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
-                MessageBox.Show("--End of format-- ");
+                Console.WriteLine("--End of format-- ");
 
             }
             else
@@ -128,7 +128,7 @@ namespace Windows_Installation
 
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
-                MessageBox.Show("--End of format-- ");
+                Console.WriteLine("--End of format-- ");
             }
 
         }
