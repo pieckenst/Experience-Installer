@@ -54,8 +54,7 @@ namespace Windows_Installation
                 diskPart.formatOnePartition(int.Parse(txtdisknum.Text));
             }
 
-            Cmd echo = new Cmd("cmd.exe", "/c echo Formatting is complete.");
-            echo.attachLabel(output);
+            
             
         }
 

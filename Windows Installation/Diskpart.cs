@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Windows_Installation
@@ -66,13 +67,13 @@ namespace Windows_Installation
                 Console.WriteLine("  Formatting Windows Partition");
 
                 process.StandardInput.WriteLine("format quick fs=ntfs");
-                process.StandardInput.WriteLine("assign letter=w");
+                process.StandardInput.WriteLine("assign letter=k");
 
 
 
                 process.StandardInput.WriteLine("exit");
 
-                Console.WriteLine("--End of format-- ");
+                MessageBox.Show("--End of format-- ");
 
                 string output1 = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
@@ -108,7 +109,7 @@ namespace Windows_Installation
                 Console.WriteLine("  Formatting Windows as NTFS " + index);
 
                 process.StandardInput.WriteLine("format quick fs=ntfs label=Windows");
-                process.StandardInput.WriteLine("assign letter=W");
+                process.StandardInput.WriteLine("assign letter=K");
                 Console.WriteLine("  Creating Recovery Partition");
 
                 process.StandardInput.WriteLine("create partition primary");
@@ -121,7 +122,7 @@ namespace Windows_Installation
                 process.StandardInput.WriteLine("set id=27");
 
                 process.StandardInput.WriteLine("exit");
-                Console.WriteLine("--End of format-- ");
+                MessageBox.Show("--End of format-- ");
 
 
                 string output = process.StandardOutput.ReadToEnd();
