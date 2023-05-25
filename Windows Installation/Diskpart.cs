@@ -96,7 +96,7 @@ namespace Windows_Installation
 
                 Console.WriteLine("  Creating System Partition");
 
-                process.StandardInput.WriteLine("create partition primary size=100");
+                process.StandardInput.WriteLine("create partition primary ");
                 Console.WriteLine("  Formatting System as NTFS " + index);
 
                 process.StandardInput.WriteLine("format quick fs=ntfs label=System");
