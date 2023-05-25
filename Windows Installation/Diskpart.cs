@@ -73,11 +73,12 @@ namespace Windows_Installation
 
                 process.StandardInput.WriteLine("exit");
 
-                MessageBox.Show("--End of format-- ");
+               
 
                 string output1 = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
-                
+                MessageBox.Show("--End of format-- ");
+
             }
             else
             {
@@ -122,12 +123,12 @@ namespace Windows_Installation
                 process.StandardInput.WriteLine("set id=27");
 
                 process.StandardInput.WriteLine("exit");
-                MessageBox.Show("--End of format-- ");
+                
 
 
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
-                
+                MessageBox.Show("--End of format-- ");
             }
 
         }
