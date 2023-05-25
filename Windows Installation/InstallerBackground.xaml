@@ -5,13 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Windows_Installation"
         mc:Ignorable="d"
-        Title="InstallerBackground" Height="800" Width="1000" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Title="InstallerBackground" Height="1080" Width="1600" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="177*"/>
+            <ColumnDefinition Width="775*"/>
         </Grid.ColumnDefinitions>
-        <Image Margin="0,-58,0,-92" Source="/Setup_background_(Longhorn_Build_4051_Setup).png" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
-
+        <Image Margin="-267,-2,-90,-3" Source="/4n4YBNw.png" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.075"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image Margin="5,6,142,1013" Source="/winlogo.png" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="status1" Content="   Collecting information" HorizontalAlignment="Left" Margin="38,105,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" GroupName="DynamicInstallSidebar" IsChecked="True" BorderBrush="#FFFF5200"/>
+        <RadioButton x:Name="status2" Content="   Dynamic Update" HorizontalAlignment="Left" Margin="38,131,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" GroupName="DynamicInstallSidebar" BorderBrush="#FFFF5200"/>
+        <RadioButton x:Name="status3" Content="   Preparing installation" HorizontalAlignment="Left" Margin="38,156,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" GroupName="DynamicInstallSidebar" BorderBrush="#FFFF5200"/>
+        <RadioButton x:Name="status4" Content="   Instaling Windows" HorizontalAlignment="Left" Margin="38,180,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" GroupName="DynamicInstallSidebar" BorderBrush="#FFFF5200"/>
+        <RadioButton x:Name="status5" Content="   Finalizing installation" HorizontalAlignment="Left" Margin="38,206,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" GroupName="DynamicInstallSidebar" BorderBrush="#FFFF5200"/>
+        <TextBlock HorizontalAlignment="Left" Margin="28,869,0,0" TextWrapping="Wrap" Text="To cancel  Setup press the ESC key" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Height="52" Width="190" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

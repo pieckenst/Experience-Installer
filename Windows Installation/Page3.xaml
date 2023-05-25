@@ -27,7 +27,6 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
                     </TextBox.Background>
                 </TextBox>
-                <Button x:Name="btnApply" Content="Deploy" Margin="0,0,9,36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnApply_Click" Grid.Column="1"/>
                 <Label Content="The path to WIM" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="btnWimInfo" Content="Image Info" HorizontalAlignment="Left" Margin="10,0,0,36" Width="93" Height="22" VerticalAlignment="Bottom" Click="btnWimInfo_Click"/>
                 <ListBox x:Name="lstWims" Height="72" Margin="10,48,10,0" VerticalAlignment="Top" BorderThickness="1,0,1,1" BorderBrush="#FFA5BED6" Foreground="White" Grid.ColumnSpan="2">
@@ -57,17 +56,17 @@
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform X="350" Y="12"/>
+                        <TranslateTransform X="270" Y="12"/>
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            <Button Content="Copy drivers" Click="Button_Click_1" Width="96" Height="22" RenderTransformOrigin="0.5,0.5">
+            <Button x:Name="btnApply" Content="Deploy" Width="76" Click="btnApply_Click" RenderTransformOrigin="0.5,0.5" Height="23">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform X="250" Y="-10"/>
+                        <TranslateTransform Y="-10" X="351"/>
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>

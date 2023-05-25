@@ -100,12 +100,7 @@ namespace Windows_Installation
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Cmd driver = new Cmd("\\\\changeme\\osdeploy\\drivercopy.exe", "");
-            driver.execute();
-
-        }
+        
     }
 }
 

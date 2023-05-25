@@ -17,13 +17,33 @@
         <Label Content="Welcome to Windows Setup" HorizontalAlignment="Left" Margin="142,34,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22" Grid.Column="1"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="142,89,0,0" TextWrapping="Wrap" Text="This tool will allow you to deploy a windows image and install Windows Experience" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Height="129" Width="489"/>
         <StackPanel Background="#FFE4E3E3" Grid.ColumnSpan="2" Margin="0,480,0,0" RenderTransformOrigin="1,1">
-            <Button Content="Next" Height="31" Width="96" RenderTransformOrigin="-0.313,5.788" Click="Button_Click">
+            <Button Content="Next" Height="30" Width="96" RenderTransformOrigin="-0.313,5.788" Click="Button_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform X="322" Y="10"/>
+                        <TranslateTransform X="259" Y="9"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Content="Back" Width="88" Height="32" RenderTransformOrigin="0.5,0.5" IsEnabled="False" Foreground="#FF838383" Background="#FFDCD1D1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-22" X="162"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button Content="Cancel" Height="30" Width="72" RenderTransformOrigin="-0.313,5.788" >
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="349" Y="-53"/>
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
