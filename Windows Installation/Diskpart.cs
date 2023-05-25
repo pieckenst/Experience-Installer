@@ -143,7 +143,7 @@ namespace Windows_Installation
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.FileName = "x:\\windows\\system32\\bcdboot.exe";
+                process.StartInfo.FileName = "bcdboot.exe";
                 process.StartInfo.Arguments = "k:\\Windows /s S:";
                 process.Start();
                 string output1 = process.StandardOutput.ReadToEnd();
