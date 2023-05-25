@@ -67,15 +67,7 @@ namespace Windows_Installation
             diskPart.executeAfterExit(echo);
         }
 
-        private void cTwoPartitions_Checked(object sender, RoutedEventArgs e)
-        {
-            txtGb.IsEnabled = true;
-        }
-
-        private void cOnePartition_Checked(object sender, RoutedEventArgs e)
-        {
-            txtGb.IsEnabled = false;
-        }
+        
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
