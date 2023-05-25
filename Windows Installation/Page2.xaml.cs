@@ -51,20 +51,12 @@ namespace Windows_Installation
             }
             else
             {
-                try
-                {
-                    int gb = Convert.ToInt16(txtGb.Text);
-                    diskPart.formatTwoPartitions(gb, int.Parse(txtdisknum.Text));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+                diskPart.formatOnePartition(int.Parse(txtdisknum.Text));
             }
 
             Cmd echo = new Cmd("cmd.exe", "/c echo Formatting is complete.");
             echo.attachLabel(output);
-            diskPart.executeAfterExit(echo);
+            
         }
 
         

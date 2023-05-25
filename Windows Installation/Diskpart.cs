@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Controls;
 
 namespace Windows_Installation
@@ -34,40 +35,100 @@ namespace Windows_Installation
                 return false;
             }
         }
-        public void formatOnePartition(int disknumber)
-        { 
-            if(isUEFI())
+        public void formatOnePartition(int index)
+        {
+            Process process = new Process();
+            if (isUEFI())
             {
-                clearOutput = true;
-                diskPart(new List<String>(new String[] {
-                "sel disk" + disknumber,
-                "clean",
-                "convert gpt",
-                "create part efi size=500",
-                "format fs=fat32",
-                "assign letter=s",
-                "format quick fs=ntfs",
-                "act",
-                "ass letter=k"
-            }));
+                Console.WriteLine("--Start of format-- ");
+                process.StartInfo.FileName = "diskpart.exe";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+                process.StandardInput.WriteLine("select disk " + index);
+                Console.WriteLine("  Formatting Drive " + index);
+                process.StandardInput.WriteLine("clean");
+                Console.WriteLine("  Converting to GPT");
+
+                process.StandardInput.WriteLine("convert gpt");
+                Console.WriteLine("  Creating EFI Partition");
+
+                process.StandardInput.WriteLine("create part efi size=500");
+                Console.WriteLine("  Formatting EFI as FAT32");
+
+                process.StandardInput.WriteLine("format fs=fat32");
+                process.StandardInput.WriteLine("assign letter=s");
+                Console.WriteLine("  Creating Windows Partition");
+
+                process.StandardInput.WriteLine("create part pri");
+                Console.WriteLine("  Formatting Windows Partition");
+
+                process.StandardInput.WriteLine("format quick fs=ntfs");
+                process.StandardInput.WriteLine("assign letter=w");
+
+
+
+                process.StandardInput.WriteLine("exit");
+
+                Console.WriteLine("--End of format-- ");
+
+                string output1 = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+                
             }
             else
             {
-                clearOutput = true;
-                diskPart(new List<String>(new String[] {
-                "sel disk" + disknumber,
-                "clean",
+                Console.WriteLine("--Start of format-- ");
 
-                "create partition primary size=100",
-                "format quick fs=ntfs label=System",
-                "assign letter=s",
-                "create partition primary",
-                "format quick fs=ntfs label=Windows",
-                "act",
-                "ass letter=k"
-            }));
+                process.StartInfo.FileName = "diskpart.exe";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.RedirectStandardInput = true;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.Start();
+                process.StandardInput.WriteLine("select disk " + index);
+                Console.WriteLine("  Formatting Drive " + index);
+                process.StandardInput.WriteLine("clean");
+
+                Console.WriteLine("  Creating System Partition");
+
+                process.StandardInput.WriteLine("create partition primary size=100");
+                Console.WriteLine("  Formatting System as NTFS " + index);
+
+                process.StandardInput.WriteLine("format quick fs=ntfs label=System");
+                process.StandardInput.WriteLine("assign letter=S");
+                Console.WriteLine("  Creating Windows Partition");
+
+                process.StandardInput.WriteLine("create partition primary");
+                Console.WriteLine("  Removing 650 MB from Windows");
+
+                process.StandardInput.WriteLine("shrink minimum=650");
+                Console.WriteLine("  Formatting Windows as NTFS " + index);
+
+                process.StandardInput.WriteLine("format quick fs=ntfs label=Windows");
+                process.StandardInput.WriteLine("assign letter=W");
+                Console.WriteLine("  Creating Recovery Partition");
+
+                process.StandardInput.WriteLine("create partition primary");
+                Console.WriteLine("  Formatting Recovery as NTFS " + index);
+
+                process.StandardInput.WriteLine("format quick fs=ntfs label=Recovery");
+                process.StandardInput.WriteLine("assign letter=R");
+                Console.WriteLine("  Marking Recovery as Hidden " + index);
+
+                process.StandardInput.WriteLine("set id=27");
+
+                process.StandardInput.WriteLine("exit");
+                Console.WriteLine("--End of format-- ");
+
+
+                string output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+                
             }
-            
+
         }
 
         public bool BCDRecords()
