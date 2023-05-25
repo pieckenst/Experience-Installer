@@ -126,7 +126,7 @@ namespace Windows_Installation
                 
 
 
-                string output = process.StandardOutput.ReadToEnd();
+                string outputs = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
                 Console.WriteLine("--End of format-- ");
             }
@@ -146,8 +146,9 @@ namespace Windows_Installation
                 process.StartInfo.FileName = "bcdboot.exe";
                 process.StartInfo.Arguments = "k:\\Windows /s S:";
                 process.Start();
-                string output1 = process.StandardOutput.ReadToEnd();
+                string outputs = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
+                Console.WriteLine(outputs);
                 return true;
             }
             else
@@ -160,8 +161,9 @@ namespace Windows_Installation
                 process.StartInfo.FileName = "x:\\windows\\system32\\bcdboot.exe";
                 process.StartInfo.Arguments = "k:\\windows /s S: /f ALL";
                 process.Start();
-                string output = process.StandardOutput.ReadToEnd();
+                string outputs = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
+                Console.WriteLine(outputs);
                 return true;
             }
         }
@@ -180,11 +182,11 @@ namespace Windows_Installation
             process.Start();
             process.StandardInput.WriteLine("list volume");
             process.StandardInput.WriteLine("exit");
-            string output = process.StandardOutput.ReadToEnd();
+            string outputs = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
 
             // extract information from output
-            string table = output.Split(new string[] { "DISKPART>" }, StringSplitOptions.None)[1];
+            string table = outputs.Split(new string[] { "DISKPART>" }, StringSplitOptions.None)[1];
             var rows = table.Split(new string[] { "\n" }, StringSplitOptions.None);
             for (int i = 3; i < rows.Length; i++)
             {
