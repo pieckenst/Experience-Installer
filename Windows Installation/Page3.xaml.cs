@@ -47,9 +47,11 @@ namespace Windows_Installation
             int indexsel = int.Parse(txtdisknum.Text);
             if (Install(indexsel))
             {
+                pgrApplyProgress.Value = 50;
                 Console.WriteLine(" (3/4) Adding BCD Boot Records");
                 if (diskPart.BCDRecords())
                 {
+                    pgrApplyProgress.Value = 100;
                     Console.WriteLine("Windows has been deployed!");
                 }
             }

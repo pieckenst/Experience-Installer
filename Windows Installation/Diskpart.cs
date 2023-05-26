@@ -128,6 +128,7 @@ namespace Windows_Installation
 
                 string outputs = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
+                Console.WriteLine(outputs);
                 Console.WriteLine("--End of format-- ");
             }
 
@@ -158,7 +159,7 @@ namespace Windows_Installation
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.FileName = "x:\\windows\\system32\\bcdboot.exe";
+                process.StartInfo.FileName = "bcdboot.exe";
                 process.StartInfo.Arguments = "k:\\windows /s S: /f ALL";
                 process.Start();
                 string outputs = process.StandardOutput.ReadToEnd();
