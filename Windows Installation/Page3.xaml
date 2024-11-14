@@ -3,97 +3,146 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Windows_Installation"
-      mc:Ignorable="d" 
-      d:DesignHeight="530" d:DesignWidth="800"
-      Title="Page3" Background="White">
-
+      Title="Windows Setup" 
+      Height="531" 
+      Width="800"
+      Background="White">
     <Grid>
-        <GroupBox Header="" Margin="29,283,29,0" VerticalAlignment="Top" Height="185">
-            <Grid Margin="10,0,10,0" Height="183">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="169*"/>
-                    <ColumnDefinition Width="198*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox x:Name="txtWimPath" Height="22" Margin="10,26,10,0" TextWrapping="Wrap" Text="e:\sources\install.wim" VerticalAlignment="Top" Foreground="White" TextChanged="txtWimPath_TextChanged" Grid.ColumnSpan="2">
-                    <TextBox.BorderBrush>
-                        <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
-                            <GradientStop Color="#FFABADB3" Offset="0.05"/>
-                            <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
-                            <GradientStop Color="#FFA5BED6" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextBox.BorderBrush>
-                    <TextBox.Background>
-                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
-                    </TextBox.Background>
-                </TextBox>
-                <Label Content="The path to WIM" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="btnWimInfo" Content="Image Info" HorizontalAlignment="Left" Margin="10,0,0,36" Width="93" Height="22" VerticalAlignment="Bottom" Click="btnWimInfo_Click"/>
-                <ListBox x:Name="lstWims" Height="72" Margin="10,48,10,0" VerticalAlignment="Top" BorderThickness="1,0,1,1" BorderBrush="#FFA5BED6" Foreground="White" Grid.ColumnSpan="2">
-                    <ListBox.Background>
-                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionTextColorKey}}"/>
-                    </ListBox.Background>
-                </ListBox>
-                <Label Content="Index:" HorizontalAlignment="Left" Margin="111,126,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtdisknum" HorizontalAlignment="Left" Height="24" Margin="163,128,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="70" TextAlignment="Right" RenderTransformOrigin="0,0.835" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header area -->
+        <Grid Grid.Row="0" Background="#F0F0F0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Margin="20,10">
+                <TextBlock Text="Windows Setup" 
+                          FontSize="24" 
+                          FontWeight="Bold"/>
+                <TextBlock Text="Image Deployment" 
+                          FontSize="16" 
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+            
+            <Image Source="/icons8-windows-xp-208.png" 
+                   Height="60" 
+                   Width="60"
+                   Grid.Column="1"
+                   Margin="0,0,20,0"/>
+        </Grid>
+
+        <!-- Main content -->
+        <GroupBox Grid.Row="1" 
+                  Header="Windows Image Configuration" 
+                  Margin="20">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="output" 
+                        Height="80"
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        TextWrapping="Wrap" 
+                        Text="-- Issue --" 
+                        IsReadOnly="True"
+                        FontFamily="Consolas"/>
+
+                <TextBlock Text="Installation Progress"
+                          FontSize="16"
+                          Grid.Row="1"
+                          Margin="0,0,0,5"/>
+
+                <ProgressBar x:Name="pgrApplyProgress" 
+                           Height="22"
+                           Grid.Row="2" 
+                           Margin="0,0,0,10"/>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="The path to WIM:" Grid.Column="0"/>
+                    <TextBox x:Name="txtWimPath" 
+                           Text="e:\sources\install.wim"
+                           Grid.Column="1"/>
+                </Grid>
+
+                <ListBox x:Name="lstWims" 
+                        Height="60"
+                        Grid.Row="4"
+                        Margin="0,10"/>
+
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Label Content="Index:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtdisknum" 
+                                Width="70"
+                                Text="0"
+                                VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" 
+                              Grid.Column="2" 
+                              HorizontalAlignment="Right">
+                        <Button x:Name="btnWimInfo"
+                                Content="Image Info"
+                                Width="100"
+                                Height="25"
+                                Click="btnWimInfo_Click"/>
+                        <Button x:Name="btnApply"
+                                Content="Deploy"
+                                Width="100"
+                                Height="25"
+                                Margin="10,0,0,0"
+                                Click="btnApply_Click"/>
+                        <Button x:Name="btnReboot"
+                                Content="Restart"
+                                Width="100"
+                                Height="25"
+                                Margin="10,0,0,0"
+                                Click="btnReboot_Click"/>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </GroupBox>
-        <ProgressBar x:Name="pgrApplyProgress" Margin="44,207,44,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
-        <TextBox x:Name="output" Margin="44,91,44,381" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
-            <TextBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
-                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
-                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
-                    <GradientStop Color="#FFA5BED6" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.BorderBrush>
-        </TextBox>
-        <Label x:Name="proglabel" Content="Installation Progress" HorizontalAlignment="Left" Margin="44,170,0,0" VerticalAlignment="Top" FontSize="16" Width="161"/>
-        <StackPanel Background="Gainsboro" Margin="-13,483,1,0">
-            <Button x:Name="btnReboot" Content="Restart" Width="75" Click="btnReboot_Click" Height="22" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="270" Y="12"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-            <Button x:Name="btnApply" Content="Deploy" Width="76" Click="btnApply_Click" RenderTransformOrigin="0.5,0.5" Height="23">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-10" X="351"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
-        <StackPanel Background="Gainsboro" Margin="-12,0,0,455">
-            <TextBlock TextWrapping="Wrap" Text="Windows Installer" Width="166" RenderTransformOrigin="0,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-290" Y="10"/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="Image Deployment" RenderTransformOrigin="0.5,0.5" Width="167">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.143"/>
-                        <TranslateTransform Y="20" X="-290"/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-        </StackPanel>
-        <Image Margin="708,4,14,458" Source="/icons8-windows-xp-208.png"/>
 
+        <!-- Bottom button panel -->
+        <Grid Grid.Row="2" 
+              Background="#FFE4E3E3">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        Margin="0,0,85,0">
+                <Button Content="Back" 
+                        Width="75" 
+                        Height="25" 
+                        Margin="5"
+                        Click="BackButton_Click"/>
+                <Button Content="Next" 
+                        Width="75" 
+                        Height="25" 
+                        Margin="5"
+                        Click="NextButton_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -3,51 +3,65 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Windows_Installation"
-      mc:Ignorable="d"
-      Title="Page1" Background="White" Height="531" Width="800">
-
+      Title="Windows Setup" 
+      Height="450" 
+      Width="600"
+      Background="White">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="101*"/>
-            <ColumnDefinition Width="777*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <Image Margin="0,0,583,51" Source="/instbackground.png" Stretch="Fill" Grid.ColumnSpan="2"/>
-        <Label Content="Welcome to Windows Setup" HorizontalAlignment="Left" Margin="142,34,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22" Grid.Column="1"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="142,89,0,0" TextWrapping="Wrap" Text="This tool will allow you to deploy a windows image and install Windows Experience" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Height="129" Width="489"/>
-        <StackPanel Background="#FFE4E3E3" Grid.ColumnSpan="2" Margin="0,480,0,0" RenderTransformOrigin="1,1">
-            <Button Content="Next" Height="30" Width="96" RenderTransformOrigin="-0.313,5.788" Click="Button_Click">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="259" Y="9"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-            <Button Content="Back" Width="88" Height="32" RenderTransformOrigin="0.5,0.5" IsEnabled="False" Foreground="#FF838383" Background="#FFDCD1D1">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-22" X="162"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-            <Button Content="Cancel" Height="30" Width="72" RenderTransformOrigin="-0.313,5.788" >
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="349" Y="-53"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
+        <!-- Left side blue gradient background -->
+        <Image Source="/instbackground.png" 
+               Grid.RowSpan="4" 
+               Width="200" 
+               HorizontalAlignment="Left" 
+               Stretch="Fill"/>
 
+        <!-- Main content -->
+        <TextBlock Text="Windows Setup" 
+                  FontSize="24" 
+                  FontWeight="Bold"
+                  Margin="220,20,20,0" 
+                  Grid.Row="0"/>
+
+        <TextBlock Text="Welcome to Windows Setup" 
+                  FontSize="18"
+                  Margin="220,20,20,0" 
+                  Grid.Row="1"/>
+
+        <TextBlock Text="This tool will help you install a fresh copy of Windows on your computer." 
+                  TextWrapping="Wrap"
+                  FontSize="14"
+                  Margin="220,20,20,0" 
+                  Grid.Row="2"/>
+
+        <!-- Bottom button panel -->
+        <Grid Grid.Row="3" 
+              Background="#FFE4E3E3" 
+              Height="50">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        Margin="0,0,10,0">
+                <Button Content="Back" 
+                        Width="75" 
+                        Height="25" 
+                        Margin="5"
+                        IsEnabled="False"/>
+                <Button Content="Next" 
+                        Width="75" 
+                        Height="25" 
+                        Margin="5"
+                        Click="Button_Click"/>
+                <Button Content="Cancel" 
+                        Width="75" 
+                        Height="25" 
+                        Margin="5"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -3,72 +3,121 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Windows_Installation"
-      mc:Ignorable="d" 
-      d:DesignHeight="530" d:DesignWidth="800"
-      Title="Page2" Background="White">
-
+      Title="Windows Setup" 
+      Height="531" 
+      Width="800"
+      Background="White">
     <Grid>
-        <GroupBox Header="" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" Height="222" Width="748">
-            <Grid Margin="10">
-                <RadioButton x:Name="cOnePartition" Content="Use the whole hard disk for installation" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top"  IsChecked="True"/>
-                <RadioButton x:Name="cTwoPartitions" Content="Create two partitions" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" />
-                <Button Content="Formatting" Margin="0,0,10,0" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="Button_Click"/>
-                <Button x:Name="btnDiskInfo" Content="Hard Disk Info" HorizontalAlignment="Left" Margin="10,0,0,0" Width="93" Click="btnDiskInfo_Click" Height="22" VerticalAlignment="Bottom"/>
-                <Label Content="Size of the first partition:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtGb" HorizontalAlignment="Left" Height="24" Margin="22,26,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="70" TextAlignment="Right" />
-                <Label Content="GB" HorizontalAlignment="Left" Margin="97,26,0,0" VerticalAlignment="Top"/>
-                <Label Content="1." Margin="0,0,90,0" VerticalAlignment="Bottom" Height="22" FontWeight="Bold" FontSize="11" HorizontalAlignment="Right" Width="19"/>
-                <Label Content="Disk Number" HorizontalAlignment="Left" Margin="22,50,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtdisknum" HorizontalAlignment="Left" Height="24" Margin="19,0,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="70" TextAlignment="Right" />
-            </Grid>
-        </GroupBox>
-        <ProgressBar x:Name="pgrApplyProgress" Margin="26,195,26,0" Height="22" VerticalAlignment="Top" Foreground="#7FCD612F"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
-        <TextBox x:Name="output" Margin="26,87,26,376" TextWrapping="Wrap" Text="-- Issue --" Background="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" Foreground="White" FontFamily="Consolas" IsReadOnly="True" SelectionBrush="#7FCD612F">
-            <TextBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
-                    <GradientStop Color="#FFABADB3" Offset="0.05"/>
-                    <GradientStop Color="#FFE2E3EA" Offset="0.07"/>
-                    <GradientStop Color="#FFA5BED6" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBox.BorderBrush>
-        </TextBox>
-        <StackPanel Background="Gainsboro" Margin="-12,481,0,0">
-            <Button Content="Next" RenderTransformOrigin="-0.313,5.788" Click="NextButton_Click" Height="31" Width="96">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="322" Y="10"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
-        <StackPanel Background="Gainsboro" Margin="-12,0,0,460">
-            <TextBlock TextWrapping="Wrap" Text="Windows Installer" Width="166" RenderTransformOrigin="0,0.5">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-290" Y="10"/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-            <TextBlock TextWrapping="Wrap" Text="Disk Formatting" RenderTransformOrigin="0.5,0.5" Width="167">
-                <TextBlock.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.143"/>
-                        <TranslateTransform Y="20" X="-290"/>
-                    </TransformGroup>
-                </TextBlock.RenderTransform>
-            </TextBlock>
-        </StackPanel>
-        <Image Margin="710,0,12,460" Source="/icons8-windows-xp-208.png"/>
-        <Label x:Name="proglabel" Content="Operation Progress" HorizontalAlignment="Left" Margin="26,159,0,0" VerticalAlignment="Top" FontSize="16" Width="161"/>
+        <!-- Header area -->
+        <Grid Grid.Row="0" Background="#F0F0F0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Margin="20,10">
+                <TextBlock Text="Windows Setup" 
+                          FontSize="24" 
+                          FontWeight="Bold"/>
+                <TextBlock Text="Disk Configuration" 
+                          FontSize="16" 
+                          Margin="0,5,0,0"/>
+            </StackPanel>
+            
+            <Image Source="/icons8-windows-xp-208.png" 
+                   Height="60" 
+                   Width="60"
+                   Grid.Column="1"
+                   Margin="0,0,20,0"/>
+        </Grid>
+
+        <!-- Main content -->
+        <GroupBox Grid.Row="1" 
+                  Header="Disk Partitioning" 
+                  Margin="20,20,20,10">
+            <StackPanel Margin="10">
+                <TextBlock Text="Setup will create or format partitions on your hard disk"
+                          TextWrapping="Wrap"
+                          FontSize="14"
+                          Margin="0,0,0,20"/>
+                
+                <TextBox x:Name="output" 
+                        Height="100"
+                        Margin="0,0,0,20"
+                        TextWrapping="Wrap" 
+                        Text="-- Disk Information --" 
+                        IsReadOnly="True"
+                        FontFamily="Consolas"/>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Size of first partition:" Grid.Column="0"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <TextBox x:Name="txtGb" Width="70" Text="120"/>
+                        <Label Content="GB"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Disk Number:" Grid.Column="0"/>
+                    <TextBox x:Name="txtdisknum" Width="70" Text="0" Grid.Column="1" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <RadioButton x:Name="cOnePartition" 
+                            Content="Use the whole hard disk for installation" 
+                            Margin="0,0,0,10"
+                            IsChecked="True"/>
+                
+                <RadioButton x:Name="cTwoPartitions" 
+                            Content="Create two partitions" 
+                            Margin="0,0,0,20"/>
+
+                <StackPanel Orientation="Horizontal" Height="26">
+                    <Button x:Name="btnDiskInfo"
+                            Content="Hard Disk Info"
+                            Width="100"
+                            Height="25"
+                            Click="btnDiskInfo_Click"/>
+                    
+                    <Button Content="Format Disk"
+                            Width="100"
+                            Height="25"
+                            Margin="10,0,0,0"
+                            Click="Button_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Bottom button panel -->
+<Grid Grid.Row="2" 
+      Background="#FFE4E3E3">
+    <StackPanel Orientation="Horizontal" 
+                HorizontalAlignment="Right" 
+                Margin="0,0,85,0">
+        <Button Content="Back" 
+                Width="75" 
+                Height="25" 
+                Margin="5"
+                Click="BackButton_Click"/>
+        <Button Content="Next" 
+                Width="75" 
+                Height="25" 
+                Margin="5"
+                Click="NextButton_Click"/>
+    </StackPanel>
+</Grid>
     </Grid>
 </Page>
